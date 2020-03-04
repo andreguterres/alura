@@ -7,13 +7,10 @@ const API = 'http://localhost:3000';
 
 export class PhotoService {
 
-  constructor(private http: HttpClient) {
-
-  }
-
-  listFromUser(userName) {
+  constructor(private http: HttpClient) { }
+  listFromUser(userName: string) {
 
     return this.http
-      .get<Object[]>(API +'/flavio/photos');    
+      .get<Object[]>(API + '/' + userName + '/photos');
   }
 }
