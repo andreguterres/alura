@@ -4,6 +4,8 @@ import { AppRoutingModule } from './app.routing.module';
 import { AppComponent } from './app.component';
 
 import { PhotosModule } from './photos/photos.module';
+import { ErrorsModule } from './errors/errors.module';
+
 
 
 
@@ -15,7 +17,8 @@ import { PhotosModule } from './photos/photos.module';
     BrowserModule,
     AppRoutingModule,
     PhotosModule,
-    AppRoutingModule
+    AppRoutingModule,
+    ErrorsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
