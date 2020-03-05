@@ -5,11 +5,14 @@
            type="search"
            placeholder="search..."
            autofocus
-           (keyup)="debounce.next($event.target.value)"
-           >
+           (keyup)="debounce.next($event.target.value)">
   </form>
 </div>
+
 <a-photos [photos]="photos | filterByDescription: filter"></a-photos>
+
+<a-load-button (click)="load()" [hasMore]="hasMore"></a-load-button>
+
 
 
 

@@ -1,5 +1,5 @@
 import { Component, OnInit, OnDestroy } from '@angular/core';
-//import { PhotoService } from '../photo/photo.service';
+import { PhotoService } from '../photo/photo.service';
 import { ActivatedRoute } from '@angular/router';
 import { Subject } from 'rxjs';
 import { debounceTime } from 'rxjs/operators'
@@ -13,32 +13,43 @@ import { Photo } from '../photo/photo';
   styleUrls: ['./photo-list.component.css']
 })
 export class PhotoListComponent implements OnInit, OnDestroy {
-  ngOnDestroy(): void {
-    this.debounce.unsubscribe(); // para não alocar dados em memoria na hora da pesquisa
-    }
+
 
   photos: Photo[] = [];
   filter: string = '';
   debounce: Subject<string> = new Subject<string>();
-  constructor(private activatedRoute: ActivatedRoute) { }
-    //private photoService: PhotoService,
-   
+  hasMore: boolean = true;
+  currentPage: number = 1;
+  userName: string = '';
+
+
+  constructor(private activatedRoute: ActivatedRoute, private photoService: PhotoService) { }
+  
+
 
   ngOnInit(): void {
 
+    this.userName = this.activatedRoute.snapshot.params.userName;
     this.photos = this.activatedRoute.snapshot.data['photos'];
     this.debounce
       .pipe(debounceTime(300))
       .subscribe(filter => this.filter = filter);
-    
-
-    //const userName = this.activatedRoute
-    //  .snapshot
-    //  .params
-    //  .userName;
-    //this.photoService
-    //  .listFromUser(userName)
-    //  .subscribe(photos => this.photos = photos);
 
   }
+  ngOnDestroy(): void {
+    this.debounce.unsubscribe(); // para não alocar dados em memoria na hora da pesquisa
+  }
+
+  // load da paginação
+  load() {
+    this.photoService
+      .listFromUserPaginated(this.userName, ++this.currentPage)
+      .subscribe(photos => {
+        this.photos = this.photos.concat(photos);
+        this.photos.push(...photos);
+        if (!photos.length) this.hasMore = false;
+
+      });
+  }
+
 }
