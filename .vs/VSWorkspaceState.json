@@ -1,3 +1,16 @@
 {
+  "ExpandedNodes": [
+    "",
+    "\\e2e",
+    "\\e2e\\src",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\photos",
+    "\\src\\app\\photos\\photo-list",
+    "\\src\\app\\photos\\photo-list\\load-button",
+    "\\src\\app\\photos\\photo-list\\photos",
+    "\\src\\assets",
+    "\\src\\environments"
+  ],
   "PreviewInSolutionExplorer": false
 }
