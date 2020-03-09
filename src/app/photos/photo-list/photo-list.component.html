@@ -1,4 +1,8 @@
-<a-search></a-search>
+
+<a-search
+          (onTyping)="filter = $event" [value]="filter" >
+</a-search>
+
 <a-photos [photos]="photos | filterByDescription: filter"></a-photos>
 
 <a-load-button (click)="load()" [hasMore]="hasMore"></a-load-button>
