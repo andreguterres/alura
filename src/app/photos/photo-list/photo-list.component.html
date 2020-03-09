@@ -1,15 +1,4 @@
-
-<div class="text-center mt-3 mb-3">
-  <form>
-    <i aria-hidden="true" class="fa fa-search mr-2"></i>
-    <input class="rounded"
-           type="search"
-           placeholder="search..."
-           autofocus
-           (keyup)="debounce.next($event.target.value)">
-  </form>
-</div>
-
+<a-search></a-search>
 <a-photos [photos]="photos | filterByDescription: filter"></a-photos>
 
 <a-load-button (click)="load()" [hasMore]="hasMore"></a-load-button>
