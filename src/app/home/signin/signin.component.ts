@@ -11,13 +11,14 @@ export class SignInComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { } //o constructor injeta um artefato em uma classe
+  constructor(private formBuilder: FormBuilder) { } //o constructor, (de formulário nesse caso, o ReactiveFormsModule disponibiliza o FormBuilder) injeta um artefato em uma classe. Ex: Validators
   ngOnInit(): void   // Cria o Form
   {
 
     this.loginForm = this.formBuilder.group({
       userName: ['', Validators.required],
       password: ['', Validators.required]
+
     })
 
   }

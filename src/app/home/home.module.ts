@@ -6,7 +6,7 @@ import { CommonModule } from '@angular/common';
 @NgModule({
 
   declarations: [SignInComponent],
-  imports: [CommonModule, ReactiveFormsModule]
+  imports: [CommonModule, ReactiveFormsModule] //ReactiveFormsModule disponibilza diretivas e ferramentas para fazer validações.
 
 })
 export class HomeModule
