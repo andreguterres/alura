@@ -2,6 +2,7 @@ import { Component, OnInit, ViewChild, ElementRef } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from '../../core/auth/auth.service';
 import { Router } from '@angular/router';
+import { PlatFormDetectorService } from 'src/app/core/platform-detector/platform-service';
 
 @Component({
 
@@ -19,7 +20,8 @@ export class SignInComponent implements OnInit {
     (
     private formBuilder: FormBuilder,
     private authService: AuthService,
-    private router: Router
+    private router: Router,
+    private platformDectectorService: PlatFormDetectorService
     ) { }
 
 
@@ -44,7 +46,8 @@ export class SignInComponent implements OnInit {
       () => this.router.navigate(['user',userName]),
         err => {
           this.loginForm.reset();
-          this.userNameInput.nativeElement.focus();
+          this.platformDectectorService.isPlatformBrowser() && this.userNameInput.nativeElement.focus();// Sendo um boolean e tendo a condição "&&" se o 1º for verdadeiro ele testa a segunda condição se é true ou falso tbm,
+                                                                                                       //se o 1º for falso ele nem excuta a segunda condição
           alert('Usuário Invalido !');
         }
       );
