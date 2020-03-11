@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
+import { AuthService } from 'src/app/core/auth.service';
 
 @Component({
 
@@ -11,7 +12,13 @@ export class SignInComponent implements OnInit {
 
   loginForm: FormGroup;
 
-  constructor(private formBuilder: FormBuilder) { } //o constructor, (de formulário nesse caso, o ReactiveFormsModule disponibiliza o FormBuilder) injeta um artefato em uma classe. Ex: Validators
+  constructor //o constructor, (de formulário nesse caso, o ReactiveFormsModule disponibiliza o FormBuilder) injeta um artefato em uma classe. Ex: Validators
+    (
+    private formBuilder: FormBuilder,
+    private authService: AuthService
+    ) { }
+
+
   ngOnInit(): void   // Cria o Form
   {
 
@@ -19,8 +26,23 @@ export class SignInComponent implements OnInit {
       userName: ['', Validators.required],
       password: ['', Validators.required]
 
-    })
-
+    });
   }
 
+  login() {
+    
+    const userName = this.loginForm.get('userName').value;
+    const password = this.loginForm.get('password').value;
+
+    this.authService
+      .authenticate(userName, password)
+      .subscribe(
+        () => console.log('autenticado'),
+        err => {
+          alert('Usuário Invalido !');
+          this.loginForm.reset();
+        }
+      );
+
+  }
 }
