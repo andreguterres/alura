@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { AuthService } from 'src/app/core/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
 
@@ -15,7 +16,8 @@ export class SignInComponent implements OnInit {
   constructor //o constructor, (de formulário nesse caso, o ReactiveFormsModule disponibiliza o FormBuilder) injeta um artefato em uma classe. Ex: Validators
     (
     private formBuilder: FormBuilder,
-    private authService: AuthService
+    private authService: AuthService,
+    private router: Router
     ) { }
 
 
@@ -37,7 +39,7 @@ export class SignInComponent implements OnInit {
     this.authService
       .authenticate(userName, password)
       .subscribe(
-        () => console.log('autenticado'),
+      () => this.router.navigate(['user',userName]),
         err => {
           alert('Usuário Invalido !');
           this.loginForm.reset();
