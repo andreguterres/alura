@@ -5,7 +5,7 @@
   <!--usa o loginForm do singnin.compoment-->
 
   <div class="form-group">
-    <input formControlName="userName" class="form-control" placeholder="user name" autofocus>
+    <input #userNameInput formControlName="userName" class="form-control" placeholder="user name" autofocus>
     <a-vmessage
                 *ngIf="loginForm.get('userName').errors?.required"
                 text="User name is required!">
