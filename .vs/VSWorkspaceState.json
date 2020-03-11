@@ -1,3 +1,13 @@
 {
+  "ExpandedNodes": [
+    "",
+    "\\e2e",
+    "\\e2e\\src",
+    "\\src",
+    "\\src\\app",
+    "\\src\\app\\errors",
+    "\\src\\app\\home",
+    "\\src\\app\\shared"
+  ],
   "PreviewInSolutionExplorer": false
 }
