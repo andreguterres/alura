@@ -3,9 +3,9 @@
   Sorry, no photos
 </p>
 
-<ol class="list-unstyled">
+<ol class="list-unstyled" style=" margin: auto" >
   <li *ngFor="let cols of rows" class="row no-gutters">
-    <div *ngFor="let photo of cols" class="col-4" aDarkenOnHover >
+    <div *ngFor="let photo of cols"  class="col-4" aDarkenOnHover >
       <a-card [title]="photo.description">
         <a-photo
                  [url]="photo.url"

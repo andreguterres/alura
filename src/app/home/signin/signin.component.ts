@@ -51,6 +51,5 @@ export class SignInComponent implements OnInit {
           alert('Usuário Invalido !');
         }
       );
-
   }
 }
