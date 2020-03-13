@@ -8,6 +8,7 @@ import { BehaviorSubject } from 'rxjs';
 export class UserService {
 
   private userSubject = new BehaviorSubject<User>(null);
+  private userName: string;
 
   constructor(private tokenService: TokenService) {
 
@@ -27,11 +28,20 @@ export class UserService {
   private decodeAndNotify() {
     const token = this.tokenService.getToken();
     const user = jwt_decode(token) as User; //(aqui a chamada jwt_decode)
+    this.userName = user.name;
     this.userSubject.next(user);
   }
 
   getLogout() {
     this.tokenService.removeToken();// remove o token
     this.userSubject.next(null); // ele emite uma valor null para sumir o nome do usuário que esta no header
+  }
+
+  isLogged() {
+    return this.tokenService.hasToken();
+  }
+
+  getUserName() {
+    return this.userName;
   }
 }
